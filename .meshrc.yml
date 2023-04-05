@@ -1,0 +1,8 @@
+sources:
+  - name: gRPC Example
+    handler:
+      grpc:
+        endpoint: localhost:50051
+
+documents:
+  - example-queries/*.graphql
