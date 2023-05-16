@@ -1,8 +1,9 @@
+serve:
+    browser: false
 sources:
-  - name: gRPC Example
-    handler:
-      grpc:
-        endpoint: localhost:50051
-
-documents:
-  - example-queries/*.graphql
+    - name: gRPC Example
+      handler:
+          grpc:
+              # source: proto/playground.proto
+              source: graphql-schema/schema.graphql
+              endpoint: localhost:5210

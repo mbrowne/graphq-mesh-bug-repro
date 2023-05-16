@@ -1,0 +1,138 @@
+schema {
+    query: Query
+}
+
+directive @grpcMethod(
+    rootJsonName: String
+    objPath: String
+    methodName: String
+    responseStream: Boolean
+) on FIELD_DEFINITION
+
+directive @grpcConnectivityState(rootJsonName: String, objPath: String) on FIELD_DEFINITION
+
+directive @grpcRootJson(name: String, rootJson: ObjMap, loadOptions: ObjMap) repeatable on OBJECT
+
+type Query
+    @grpcRootJson(
+        name: "Root0"
+        rootJson: "{\"options\":{\"csharp_namespace\":\"Artnet.Manager.CoreData.GrpcHost.Services.Playground\"},\"nested\":{\"artnet\":{\"nested\":{\"coredata\":{\"nested\":{\"playground\":{\"nested\":{\"Playground\":{\"methods\":{\"GetInput\":{\"requestType\":\"EchoInputRequest\",\"responseType\":\"EchoInputRequest\",\"comment\":null},\"GetSnailMail\":{\"requestType\":\"SnailMailRequest\",\"responseType\":\"SnailMailResponse\",\"comment\":null},\"GetUserInfo\":{\"requestType\":\"EchoUserInfoRequest\",\"responseType\":\"EchoUserInfoResponse\",\"comment\":null}},\"comment\":null},\"EchoInputRequest\":{\"fields\":{\"price\":{\"type\":\"PlayGroundPriceFilter\",\"id\":3,\"comment\":\"USD standarize\"}},\"comment\":null},\"EchoUserInfoRequest\":{\"fields\":{},\"comment\":null},\"EchoUserInfoResponse\":{\"fields\":{\"user_info\":{\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null},\"PlayGroundPriceFilter\":{\"fields\":{\"range\":{\"type\":\"PlayGroundPriceRange\",\"id\":1,\"comment\":null}},\"comment\":null},\"PlayGroundPriceRange\":{\"fields\":{\"value_double\":{\"type\":\"google.protobuf.DoubleValue\",\"id\":1,\"comment\":null},\"value_float\":{\"type\":\"google.protobuf.FloatValue\",\"id\":2,\"comment\":null},\"value_long\":{\"type\":\"google.protobuf.Int64Value\",\"id\":3,\"comment\":null},\"value_int\":{\"type\":\"google.protobuf.Int64Value\",\"id\":4,\"comment\":null},\"value_long_notnull\":{\"type\":\"int64\",\"id\":5,\"comment\":null}},\"comment\":null},\"SnailMailRequest\":{\"fields\":{\"allow_cancellation\":{\"type\":\"bool\",\"id\":1,\"comment\":null},\"fake_data_length\":{\"type\":\"int32\",\"id\":2,\"comment\":null},\"wait_seconds\":{\"type\":\"int32\",\"id\":3,\"comment\":null}},\"comment\":null},\"SnailMailResponse\":{\"fields\":{\"fake_data\":{\"type\":\"string\",\"id\":1,\"comment\":null}},\"comment\":null}}}}}}},\"google\":{\"nested\":{\"protobuf\":{\"nested\":{\"DoubleValue\":{\"fields\":{\"value\":{\"type\":\"double\",\"id\":1}},\"comment\":null},\"FloatValue\":{\"fields\":{\"value\":{\"type\":\"float\",\"id\":1}},\"comment\":null},\"Int64Value\":{\"fields\":{\"value\":{\"type\":\"int64\",\"id\":1}},\"comment\":null},\"UInt64Value\":{\"fields\":{\"value\":{\"type\":\"uint64\",\"id\":1}},\"comment\":null},\"Int32Value\":{\"fields\":{\"value\":{\"type\":\"int32\",\"id\":1}},\"comment\":null},\"UInt32Value\":{\"fields\":{\"value\":{\"type\":\"uint32\",\"id\":1}},\"comment\":null},\"BoolValue\":{\"fields\":{\"value\":{\"type\":\"bool\",\"id\":1}},\"comment\":null},\"StringValue\":{\"fields\":{\"value\":{\"type\":\"string\",\"id\":1}},\"comment\":null},\"BytesValue\":{\"fields\":{\"value\":{\"type\":\"bytes\",\"id\":1}},\"comment\":null}}}}}}}"
+    ) {
+    artnet_coredata_playground_Playground_GetInput(
+        input: artnet_coredata_playground_EchoInputRequest_Input
+    ): artnet_coredata_playground_EchoInputRequest
+        @grpcMethod(
+            rootJsonName: "Root0"
+            objPath: "artnet.coredata.playground.Playground"
+            methodName: "GetInput"
+            responseStream: false
+        )
+    artnet_coredata_playground_Playground_GetSnailMail(
+        input: artnet_coredata_playground_SnailMailRequest_Input
+    ): artnet_coredata_playground_SnailMailResponse
+        @grpcMethod(
+            rootJsonName: "Root0"
+            objPath: "artnet.coredata.playground.Playground"
+            methodName: "GetSnailMail"
+            responseStream: false
+        )
+    artnet_coredata_playground_Playground_GetUserInfo(
+        input: artnet_coredata_playground_EchoUserInfoRequest_Input
+    ): artnet_coredata_playground_EchoUserInfoResponse
+        @grpcMethod(
+            rootJsonName: "Root0"
+            objPath: "artnet.coredata.playground.Playground"
+            methodName: "GetUserInfo"
+            responseStream: false
+        )
+    artnet_coredata_playground_Playground_connectivityState(tryToConnect: Boolean): ConnectivityState
+        @grpcConnectivityState(rootJsonName: "Root0", objPath: "artnet.coredata.playground.Playground")
+}
+
+type artnet_coredata_playground_EchoInputRequest {
+    "USD standarize"
+    price: artnet_coredata_playground_PlayGroundPriceFilter
+}
+
+type artnet_coredata_playground_PlayGroundPriceFilter {
+    range: artnet_coredata_playground_PlayGroundPriceRange
+}
+
+type artnet_coredata_playground_PlayGroundPriceRange {
+    value_double: google_protobuf_DoubleValue
+    value_float: google_protobuf_FloatValue
+    value_long: google_protobuf_Int64Value
+    value_int: google_protobuf_Int64Value
+    value_long_notnull: BigInt
+}
+
+type google_protobuf_DoubleValue {
+    value: Float
+}
+
+type google_protobuf_FloatValue {
+    value: Float
+}
+
+type google_protobuf_Int64Value {
+    value: BigInt
+}
+
+"The `BigInt` scalar type represents non-fractional signed whole numeric values."
+scalar BigInt
+
+input artnet_coredata_playground_EchoInputRequest_Input {
+    "USD standarize"
+    price: artnet_coredata_playground_PlayGroundPriceFilter_Input
+}
+
+input artnet_coredata_playground_PlayGroundPriceFilter_Input {
+    range: artnet_coredata_playground_PlayGroundPriceRange_Input
+}
+
+input artnet_coredata_playground_PlayGroundPriceRange_Input {
+    value_double: google_protobuf_DoubleValue_Input
+    value_float: google_protobuf_FloatValue_Input
+    value_long: google_protobuf_Int64Value_Input
+    value_int: google_protobuf_Int64Value_Input
+    value_long_notnull: BigInt
+}
+
+input google_protobuf_DoubleValue_Input {
+    value: Float
+}
+
+input google_protobuf_FloatValue_Input {
+    value: Float
+}
+
+input google_protobuf_Int64Value_Input {
+    value: BigInt
+}
+
+type artnet_coredata_playground_SnailMailResponse {
+    fake_data: String
+}
+
+input artnet_coredata_playground_SnailMailRequest_Input {
+    allow_cancellation: Boolean
+    fake_data_length: Int
+    wait_seconds: Int
+}
+
+type artnet_coredata_playground_EchoUserInfoResponse {
+    user_info: String
+}
+
+scalar artnet_coredata_playground_EchoUserInfoRequest_Input
+    @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+enum ConnectivityState {
+    IDLE
+    CONNECTING
+    READY
+    TRANSIENT_FAILURE
+    SHUTDOWN
+}
+
+scalar ObjMap
