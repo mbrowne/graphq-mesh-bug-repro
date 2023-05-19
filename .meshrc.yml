@@ -4,6 +4,5 @@ sources:
     - name: gRPC Example
       handler:
           grpc:
-              # source: proto/playground.proto
-              source: graphql-schema/schema.graphql
-              endpoint: localhost:5210
+              endpoint: localhost:50051
+              # source: graphql-schema/schema.graphql
